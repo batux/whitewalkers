@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.mongodb.client.model.geojson.Geometry;
-import com.tweet.service.model.GeoLocation;
 import com.tweet.service.util.GeometryFactory;
 
 public class TweetLocationAdapter {
