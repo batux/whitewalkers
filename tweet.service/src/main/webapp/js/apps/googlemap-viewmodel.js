@@ -2,7 +2,7 @@ define(['jquery',
 		'knockout',
 		'components/eventbus/ui-event-bus',
 		'bootstrap',
-		'async!https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=AIzaSyB7eVj45GZPJ5Xua31hm-N1ncS3vkK7GOo'
+		'async!https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=AIzaSyDNAmURAo6rGAvDKKYXNoS_1PbrWdJbIBw'
 		], 
 function($,ko,eventBus){
 	
