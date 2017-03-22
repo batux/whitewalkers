@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>GoogleMap Sample</title>
+
+<style>
+/* Always set the map height explicitly to define the size of the div
+   * element that contains the map. */
+#map {
+	height: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+</style>
+
+<script data-main="js/main.js" src="js/require.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+</head>
+
+<body>
+
+	<div class="row margin-top margin-bottom">
+		<div class="col-xs-1">
+			<img src="img/yeditepe_logo.jpg" style="height: 69px; width: 130px"
+				alt="Logo" class="img-rounded">
+		</div>
+		<div class="col-xs-1">
+			<img src="img/mQu-efgl_400x400.png"
+				style="height: 45px; width: 80px; margin-top: 10px; margin-left: 5px"
+				alt="Logo" class="img-rounded">
+		</div>
+		<div class="col-xs-3">
+			<input id="searchLabelId" type="text"
+				data-bind="value: searchedKeyword, enable: !textBasedDisability()"
+				class="form-control" style="margin-top: 13px"
+				placeholder="Type to search in tweet content ...">
+		</div>
+		<div class="col-xs-1">
+			<button class="btn btn-primary"
+				data-bind="click: search, enable: !textBasedDisability()"
+				style="margin-top: 13px">Search</button>
+		</div>
+		<div class="col-xs-1">
+			<button class="btn btn-primary"
+				data-bind="click: openSaveQueryModal, enable: !textBasedDisability()"
+				style="margin-top: 13px">Save Query</button>
+		</div>
+		<div class="col-xs-1">
+			<button class="btn btn-primary"
+				data-bind="click: openLoadQueryModal, enable: !textBasedDisability()"
+				style="margin-top: 13px">Load Query</button>
+		</div>
+		<div class="col-xs-2">
+			<button class="btn btn-danger" data-bind="click: clearDataLayerOfMap"
+				style="margin-top: 13px">Clear Drawings!</button>
+		</div>
+		<div class="col-xs-2">
+			<div class="checkbox">
+				<label style="margin-top: 11px"> <input type="checkbox"
+					data-bind="checked: textBasedDisability"> Disable
+					Text-based Query
+				</label>
+			</div>
+		</div>
+	</div>
+
+	<div id="map" style="position: relative;"></div>
+
+
+	<div class="modal fade" id="successMessageModal" role="dialog">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Query Saving Process Information</h4>
+				</div>
+				<div class="modal-body">
+					<p>Your Query was saved successfully :) </p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+	<div class="modal fade" id="querySaveModal" role="dialog">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Query Saving Panel</h4>
+				</div>
+				<div class="modal-body">
+					<input id="queryName" type="text"
+								data-bind="value: queryName"
+								class="form-control" style="margin-top: 13px"
+								placeholder="Type to determine your query name ...">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-bind="click: saveQuery">Save</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+	<div class="modal fade" id="queryLoadModal" role="dialog">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Query Loading Panel</h4>
+				</div>
+				<div class="modal-body">
+					<select class="form-control" data-bind="options: querySelectBoxItems,
+				                       optionsText: 'name',
+				                       optionsValue: 'id',
+				                       value: selectedQuery,
+				                       optionsCaption: 'Choose...'"></select>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-bind="click: loadQuery">Load</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<script type="text/javascript">
+		require([ "apps/googlemap-viewmodel" ]);
+	</script>
+
+</body>
+
+</html>
+
+
