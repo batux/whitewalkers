@@ -4,6 +4,11 @@
 
 This project uses Twitter Stream API to store tweet data in MongoDB database. I used Java Jersey REST API and Javascript Libraries. Tweet data has a document format. For that reason, I preferred MongoDB to store big data. You can find a zip file which named as "backup.zip" in project folder. You can use to import this backup to your MongoDB. With this way, You can load tweet data that has geo location information.
 
+# Open Twitter Stream via REST Call
+
+![open](https://cloud.githubusercontent.com/assets/2838457/24195388/29b1920c-0f02-11e7-84be-13e03c184c15.png)
+
+
 ## Used Technologies 
 
 1- Java
@@ -15,5 +20,6 @@ This project uses Twitter Stream API to store tweet data in MongoDB database. I 
 7- Require JS
 8- Knockout JS
 9- Google Map JS
+10- Tomcat 8.5
 
 Happy coding :)
