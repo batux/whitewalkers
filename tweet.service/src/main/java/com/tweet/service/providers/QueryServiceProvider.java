@@ -7,9 +7,7 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.geojson.Geometry;
 import com.tweet.service.adapter.document.QueryDocumentAdapter;
 import com.tweet.service.dao.implementation.QueryDao;
 import com.tweet.service.model.QueryHolder;
@@ -47,24 +45,7 @@ public class QueryServiceProvider {
 		
 		FindIterable<Document> results = this.queryDao.queryDocument(Filters.eq("_id", new ObjectId(queryIdAshexString)));
 		
-		MongoCursor<Document> resultIterator = results.iterator();
-		 
-		QueryHolder queryHolder = new QueryHolder();
-		 
-		while(resultIterator.hasNext()) {
-			 
-			 Document document = resultIterator.next();
-			 String name = (String) document.get("name");
-			 String searchKeyword = (String) document.get("searchKeyword");
-			 @SuppressWarnings("unchecked")
-			 List<Document> queryResults = (List<Document>) document.get("queryResults");
-			 Document spatialQueryGeometry = (Document) document.get("geometry");
-			 
-			 queryHolder.setName(name);
-			 queryHolder.setQueryResults(queryResults);
-			 queryHolder.setSearchKeyword(searchKeyword);
-			 queryHolder.setSpatialQueryGeometry(spatialQueryGeometry);
-		}
+		QueryHolder queryHolder = this.queryDocumentAdapter.convertDocumentToQueryHolder(results);
 		
 		return queryHolder;
 	}

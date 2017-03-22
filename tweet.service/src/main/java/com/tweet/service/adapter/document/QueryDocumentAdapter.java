@@ -11,6 +11,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.geojson.Geometry;
 import com.tweet.service.adapter.util.TweetLocationAdapter;
+import com.tweet.service.model.QueryHolder;
 import com.tweet.service.model.QuerySelectBoxItem;
 import com.tweet.service.util.GeometryFactory;
 
@@ -68,6 +69,30 @@ public class QueryDocumentAdapter {
 		}
 		
 		return querySelectBoxItems;
+	}
+	
+	public QueryHolder convertDocumentToQueryHolder(FindIterable<Document> results) {
+		
+		MongoCursor<Document> resultIterator = results.iterator();
+		 
+		QueryHolder queryHolder = new QueryHolder();
+		 
+		while(resultIterator.hasNext()) {
+			 
+			 Document document = resultIterator.next();
+			 String name = (String) document.get("name");
+			 String searchKeyword = (String) document.get("searchKeyword");
+			 @SuppressWarnings("unchecked")
+			 List<Document> queryResults = (List<Document>) document.get("queryResults");
+			 Document spatialQueryGeometry = (Document) document.get("geometry");
+			 
+			 queryHolder.setName(name);
+			 queryHolder.setQueryResults(queryResults);
+			 queryHolder.setSearchKeyword(searchKeyword);
+			 queryHolder.setSpatialQueryGeometry(spatialQueryGeometry);
+		}
+		
+		return queryHolder;
 	}
 	
 }
