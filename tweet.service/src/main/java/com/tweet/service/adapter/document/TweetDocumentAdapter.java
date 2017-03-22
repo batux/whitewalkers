@@ -1,12 +1,15 @@
 package com.tweet.service.adapter.document;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.bson.Document;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCursor;
+import com.mongodb.client.model.geojson.Point;
+import com.mongodb.client.model.geojson.Position;
 import com.tweet.service.model.GeoLocation;
 import com.tweet.service.model.Tweet;
 
@@ -16,22 +19,20 @@ public class TweetDocumentAdapter {
 		
 		Document tweetRecordAsDocument = Document.parse(rawTweetAsText);
 		
-		Document geoJsonField = null;
+		Point point = null;
 		
 		Document geoLocation = (Document) tweetRecordAsDocument.get("geoLocation");
 		
 		if(geoLocation != null && geoLocation.get("longitude") != null && geoLocation.get("latitude") != null) {
 			double longitude = (Double) geoLocation.get("longitude");
 			double latitude = (Double) geoLocation.get("latitude");
-			double[] location = { longitude, latitude };
+			Double[] location = { longitude, latitude };
 			
-			geoJsonField = new Document();
-			geoJsonField.put("type", "Point");
-			geoJsonField.put("coordinates", location);
+			Position position = new Position(Arrays.asList(location));
+			point = new Point(position);
 		}
 		
-		tweetRecordAsDocument.put("locationAsGeoJSON", geoJsonField);
-//		tweetRecordAsDocument.put("locationAsGeoJSON", location);
+		tweetRecordAsDocument.put("locationAsGeoJSON", point);
 		
 		return tweetRecordAsDocument;
 	}
