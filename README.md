@@ -1,10 +1,10 @@
 # whitewalkers
 
-The Description of Project
+## The Description of Project
 
-This project uses Twitter Stream API to store tweet data in MongoDB database. I used Java Jersey REST API and Javascript Libraries. Tweet data has a document format. For that reason, I preferred MongoDB to store big data.
+This project uses Twitter Stream API to store tweet data in MongoDB database. I used Java Jersey REST API and Javascript Libraries. Tweet data has a document format. For that reason, I preferred MongoDB to store big data. You can find a zip file which named as "backup.zip" in project folder. You can use to import this backup to your MongoDB. With this way, You can load tweet data that has geo location information.
 
-Used Technologies 
+## Used Technologies 
 
 1- Java
 2- Twitter4J API
