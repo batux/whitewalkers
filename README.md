@@ -12,6 +12,10 @@ This project uses Twitter Stream API to store tweet data in MongoDB database. I 
 
 ![close](https://cloud.githubusercontent.com/assets/2838457/24195469/8fae1a94-0f02-11e7-9d7b-f30fe4215f0d.png)
 
+# Project Overview
+
+![overview](https://cloud.githubusercontent.com/assets/2838457/24195567/f3061d08-0f02-11e7-9919-e866ffac7153.png)
+
 
 ## Used Technologies 
 
