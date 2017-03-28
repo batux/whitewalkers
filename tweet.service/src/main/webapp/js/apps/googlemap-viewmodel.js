@@ -400,10 +400,14 @@ function($,ko,eventBus){
 				
 				var tweet = tweets[i];
 				
-				var contentText = "<div><h3>" + tweet.userFullName + "</h3>";
+				var contentText = "<div class=\"info-window\">";
+				contentText += "<div class=\"bs-callout bs-callout-info\"><div class=\"row\"><div class=\"col-xs-3\"><img class=\"img-circle\" src=\"" + tweet.profileImageUrl + "\"></div>";
+				contentText += "<div class=\"col-xs-9\"><h3>" + tweet.userFullName + "</h3></div></div></div>";
+				contentText += "<div class=\"info-content\"><div class=\"bs-callout bs-callout-info\">"
 				contentText += "<p>Tweet time: " + new Date(tweet.creationDateTime).toString() + "</p>";
 				contentText += "<p>" + tweet.text + "</p>";
-				contentText += "</div>"
+				contentText += "</div></div>";
+				contentText += "</div>";
 				
 				self.infowindows[i] = new google.maps.InfoWindow({
 					content: contentText
@@ -411,10 +415,13 @@ function($,ko,eventBus){
 				
 				var geoLocation = { lat: tweet.geoLocation.latitude, lng: tweet.geoLocation.longitude};
 				
+				var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+				
 				self.markers[i] = new google.maps.Marker({
 			          position: geoLocation,
 			          map: self.map,
-			          title: 'Hello Google Map!'
+			          title: 'Hello Google Map!',
+			          icon: 'img/tweetmarker.png'
 		        });
 				self.markers[i].index = i;
 				
