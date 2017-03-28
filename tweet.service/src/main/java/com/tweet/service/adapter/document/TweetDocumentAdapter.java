@@ -69,6 +69,9 @@ public class TweetDocumentAdapter {
 			geoLocationItem.setLongitude(longitude);
 			tweet.setGeoLocation(geoLocationItem);
 			
+			String miniProfileImageURL = (String) user.get("profileImageURL");
+			tweet.setProfileImageUrl(miniProfileImageURL);
+			
 			tweets.add(tweet);
 		}
 		

@@ -8,8 +8,8 @@ import com.mongodb.client.MongoDatabase;
 
 public class MongoDbClientManager {
 
-	private final String hostName = "localhost";
-	private final int portNo = 27017;
+	private String hostName = "localhost";
+	private int portNo = 27017;
 	
 	private MongoClient mongoClient;
 	private MongoDatabase selectedMongoDatabase;
@@ -19,6 +19,16 @@ public class MongoDbClientManager {
 		
 		if(this.mongoClient == null) {
 			this.mongoClient = new MongoClient(hostName, portNo);
+		}
+	}
+	
+	public MongoDbClientManager(String hostName, int portNo) {
+		
+		this.hostName = hostName;
+		this.portNo = portNo;
+		
+		if(this.mongoClient == null) {
+			this.mongoClient = new MongoClient(this.hostName, this.portNo);
 		}
 	}
 	

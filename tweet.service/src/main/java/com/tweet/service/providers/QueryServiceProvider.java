@@ -13,12 +13,10 @@ import com.tweet.service.dao.implementation.QueryDao;
 import com.tweet.service.model.QueryHolder;
 import com.tweet.service.model.QuerySelectBoxItem;
 import com.tweet.service.mongodb.MongoDbClientManager;
+import com.tweet.service.mongodb.config.MongoDbConfiguration;
 
 public class QueryServiceProvider {
 
-	private String databaseName = "twitter";
-	private String collectionName = "queries";
-	
 	private QueryDao queryDao;
 	private QueryDocumentAdapter queryDocumentAdapter;
 	private MongoDbClientManager mongoDbClientManager;
@@ -27,9 +25,9 @@ public class QueryServiceProvider {
 		
 		this.queryDocumentAdapter = new QueryDocumentAdapter();
 		
-		this.mongoDbClientManager = new MongoDbClientManager()
-				.connectToDatabase(this.databaseName)
-				.connectToCollection(this.collectionName);
+		this.mongoDbClientManager = new MongoDbClientManager(MongoDbConfiguration.MONGODB_HOST_NAME,MongoDbConfiguration.MONGODB_HOST_PORT_NO)
+				.connectToDatabase(MongoDbConfiguration.QUERY_DATABASE_NAME)
+				.connectToCollection(MongoDbConfiguration.QUERY_COLLECTION_NAME);
 		
 		this.queryDao = new QueryDao(this.mongoDbClientManager.build());
 	}

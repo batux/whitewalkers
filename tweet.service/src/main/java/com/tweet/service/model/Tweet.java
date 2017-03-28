@@ -9,6 +9,7 @@ public class Tweet {
 	
 	private String text;
 	private long creationDateTime;
+	private String profileImageUrl;
 	
 	private GeoLocation geoLocation;
 
@@ -42,5 +43,13 @@ public class Tweet {
 
 	public void setCreationDateTime(long creationDateTime) {
 		this.creationDateTime = creationDateTime;
+	}
+
+	public String getProfileImageUrl() {
+		return profileImageUrl;
+	}
+
+	public void setProfileImageUrl(String profileImageUrl) {
+		this.profileImageUrl = profileImageUrl;
 	}
 }

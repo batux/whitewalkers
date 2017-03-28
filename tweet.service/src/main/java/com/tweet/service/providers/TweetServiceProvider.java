@@ -13,12 +13,10 @@ import com.tweet.service.dao.implementation.TweetDao;
 import com.tweet.service.model.SpatialQuery;
 import com.tweet.service.model.Tweet;
 import com.tweet.service.mongodb.MongoDbClientManager;
+import com.tweet.service.mongodb.config.MongoDbConfiguration;
 
 public class TweetServiceProvider {
 
-	private String databaseName = "twitter";
-	private String collectionName = "tweets";
-	
 	private TweetDao tweetDao;
 	private TweetFilterAdapter tweetFilterAdapter;
 	private TweetDocumentAdapter tweetDocumentAdapter;
@@ -30,9 +28,9 @@ public class TweetServiceProvider {
 		this.tweetFilterAdapter = new TweetFilterAdapter();
 		this.tweetDocumentAdapter = new TweetDocumentAdapter();
 		
-		this.mongoDbClientManager = new MongoDbClientManager()
-				.connectToDatabase(this.databaseName)
-				.connectToCollection(this.collectionName);
+		this.mongoDbClientManager = new MongoDbClientManager(MongoDbConfiguration.MONGODB_HOST_NAME,MongoDbConfiguration.MONGODB_HOST_PORT_NO)
+				.connectToDatabase(MongoDbConfiguration.TWEET_DATABASE_NAME)
+				.connectToCollection(MongoDbConfiguration.TWEET_COLLECTION_NAME);
 
 		this.tweetDao = new TweetDao(this.mongoDbClientManager.build());
 	}
